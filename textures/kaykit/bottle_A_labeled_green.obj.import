@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b3ltt14ffqmx2"
+path="res://.godot/imported/bottle_A_labeled_green.obj-96afa5cf225410b2b5f3e816bda58167.mesh"
+
+[deps]
+
+files=["res://.godot/imported/bottle_A_labeled_green.obj-96afa5cf225410b2b5f3e816bda58167.mesh"]
+
+source_file="res://textures/kaykit/bottle_A_labeled_green.obj"
+dest_files=["res://.godot/imported/bottle_A_labeled_green.obj-96afa5cf225410b2b5f3e816bda58167.mesh", "res://.godot/imported/bottle_A_labeled_green.obj-96afa5cf225410b2b5f3e816bda58167.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

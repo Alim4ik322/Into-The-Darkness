@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dln185d255xyh"
+path="res://.godot/imported/plate_food_A.obj-c146ea41162e26e42962ffe46e2ab80a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/plate_food_A.obj-c146ea41162e26e42962ffe46e2ab80a.mesh"]
+
+source_file="res://textures/kaykit/plate_food_A.obj"
+dest_files=["res://.godot/imported/plate_food_A.obj-c146ea41162e26e42962ffe46e2ab80a.mesh", "res://.godot/imported/plate_food_A.obj-c146ea41162e26e42962ffe46e2ab80a.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

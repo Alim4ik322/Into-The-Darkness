@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cgbvqyutljlf4"
+path="res://.godot/imported/candle_melted.obj-394869b82c337de8f8c9d61fb1ce3ce3.mesh"
+
+[deps]
+
+files=["res://.godot/imported/candle_melted.obj-394869b82c337de8f8c9d61fb1ce3ce3.mesh"]
+
+source_file="res://textures/kaykit/candle_melted.obj"
+dest_files=["res://.godot/imported/candle_melted.obj-394869b82c337de8f8c9d61fb1ce3ce3.mesh", "res://.godot/imported/candle_melted.obj-394869b82c337de8f8c9d61fb1ce3ce3.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

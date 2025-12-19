@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cxpn81xswkngu"
+path="res://.godot/imported/sword_shield.obj-c2c6ad58394d9fb46de34b701bbd3ff1.mesh"
+
+[deps]
+
+files=["res://.godot/imported/sword_shield.obj-c2c6ad58394d9fb46de34b701bbd3ff1.mesh"]
+
+source_file="res://textures/kaykit/sword_shield.obj"
+dest_files=["res://.godot/imported/sword_shield.obj-c2c6ad58394d9fb46de34b701bbd3ff1.mesh", "res://.godot/imported/sword_shield.obj-c2c6ad58394d9fb46de34b701bbd3ff1.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

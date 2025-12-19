@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b0r1cv20ehxsd"
+path="res://.godot/imported/banner_patternB_green.obj-e64194acc4fc2e3287d5e8537c69a58f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/banner_patternB_green.obj-e64194acc4fc2e3287d5e8537c69a58f.mesh"]
+
+source_file="res://textures/kaykit/banner_patternB_green.obj"
+dest_files=["res://.godot/imported/banner_patternB_green.obj-e64194acc4fc2e3287d5e8537c69a58f.mesh", "res://.godot/imported/banner_patternB_green.obj-e64194acc4fc2e3287d5e8537c69a58f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

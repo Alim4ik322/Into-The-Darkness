@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cwjahkfcf8eh5"
+path="res://.godot/imported/box_large.obj-04ee549c3430153e3d37a7460194e472.mesh"
+
+[deps]
+
+files=["res://.godot/imported/box_large.obj-04ee549c3430153e3d37a7460194e472.mesh"]
+
+source_file="res://textures/kaykit/box_large.obj"
+dest_files=["res://.godot/imported/box_large.obj-04ee549c3430153e3d37a7460194e472.mesh", "res://.godot/imported/box_large.obj-04ee549c3430153e3d37a7460194e472.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

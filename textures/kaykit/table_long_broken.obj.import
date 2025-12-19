@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dfgualtk34ywl"
+path="res://.godot/imported/table_long_broken.obj-b485866dbd03d2e4c2242dafe727d1bc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/table_long_broken.obj-b485866dbd03d2e4c2242dafe727d1bc.mesh"]
+
+source_file="res://textures/kaykit/table_long_broken.obj"
+dest_files=["res://.godot/imported/table_long_broken.obj-b485866dbd03d2e4c2242dafe727d1bc.mesh", "res://.godot/imported/table_long_broken.obj-b485866dbd03d2e4c2242dafe727d1bc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

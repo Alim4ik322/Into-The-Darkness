@@ -1,0 +1,207 @@
+[gd_scene load_steps=9 format=3 uid="uid://cg6lp7sydby2"]
+
+[ext_resource type="Script" path="res://scenes/lobby.gd" id="1_bbejy"]
+[ext_resource type="Theme" uid="uid://cb4pn3lr6dj6p" path="res://UI/MenuTheme.tres" id="2_dum1x"]
+[ext_resource type="Theme" uid="uid://dqvrtofb43c0l" path="res://UI/MenuTheme_40.tres" id="3_5psqm"]
+[ext_resource type="Texture2D" uid="uid://dcdpn3yg64cg8" path="res://UI/sprites/PNG/Double/Border/panel-border-028.png" id="4_4poqy"]
+[ext_resource type="Texture2D" uid="uid://c6mlu0luebbag" path="res://UI/sprites/wooden-floor-background_53876-88628.jpg" id="5_vcs71"]
+[ext_resource type="Texture2D" uid="uid://dxicp0gmmdvek" path="res://UI/sprites/PNG/Default/Divider/divider-003.png" id="6_ribbr"]
+[ext_resource type="Texture2D" uid="uid://4djd7e0pe6io" path="res://UI/sprites/изображение-Photoroom.png" id="7_pseng"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7oget"]
+bg_color = Color(0, 0, 0, 0.12549)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Lobby" type="Node2D"]
+script = ExtResource("1_bbejy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -344.0
+offset_top = -540.0
+offset_right = 344.0
+offset_bottom = -339.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("2_dum1x")
+text = "Лобби"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="CanvasLayer"]
+offset_left = 1101.0
+offset_top = 873.0
+offset_right = 1594.0
+offset_bottom = 977.0
+theme = ExtResource("3_5psqm")
+text = "Начать игру"
+flat = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/StartButton"]
+offset_right = 493.0
+offset_bottom = 104.0
+texture = ExtResource("4_4poqy")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="ExitButton" type="Button" parent="CanvasLayer"]
+offset_left = 133.0
+offset_top = 873.0
+offset_right = 626.0
+offset_bottom = 977.0
+theme = ExtResource("3_5psqm")
+theme_override_colors/icon_hover_color = Color(0.29219, 0.29219, 0.29219, 1)
+text = "Выйти в меню"
+flat = true
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="CanvasLayer/ExitButton"]
+offset_left = 2.0
+offset_right = 495.0
+offset_bottom = 104.0
+texture = ExtResource("4_4poqy")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_left = 870.0
+offset_top = 341.0
+offset_right = 1821.0
+offset_bottom = 840.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7oget")
+
+[node name="PlayerCount" type="Label" parent="CanvasLayer"]
+offset_left = 870.0
+offset_top = 268.0
+offset_right = 1395.0
+offset_bottom = 318.0
+theme = ExtResource("3_5psqm")
+text = "Количество игроков: 1"
+
+[node name="Player1" type="Label" parent="CanvasLayer"]
+offset_left = 965.0
+offset_top = 368.0
+offset_right = 1129.0
+offset_bottom = 418.0
+theme = ExtResource("3_5psqm")
+text = "Игрок 1"
+
+[node name="Panel2" type="Panel" parent="CanvasLayer"]
+offset_left = 61.0
+offset_top = 343.0
+offset_right = 800.0
+offset_bottom = 827.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7oget")
+
+[node name="Button1" type="Button" parent="CanvasLayer"]
+offset_left = 151.0
+offset_top = 420.0
+offset_right = 260.0
+offset_bottom = 534.0
+flat = true
+
+[node name="Button2" type="Button" parent="CanvasLayer"]
+offset_left = 295.0
+offset_top = 418.0
+offset_right = 404.0
+offset_bottom = 532.0
+flat = true
+
+[node name="Button3" type="Button" parent="CanvasLayer"]
+offset_left = 444.0
+offset_top = 417.0
+offset_right = 553.0
+offset_bottom = 531.0
+flat = true
+
+[node name="Button4" type="Button" parent="CanvasLayer"]
+offset_left = 589.0
+offset_top = 419.0
+offset_right = 698.0
+offset_bottom = 533.0
+flat = true
+
+[node name="Button5" type="Button" parent="CanvasLayer"]
+offset_left = 150.0
+offset_top = 610.0
+offset_right = 259.0
+offset_bottom = 724.0
+flat = true
+
+[node name="Button6" type="Button" parent="CanvasLayer"]
+offset_left = 298.0
+offset_top = 608.0
+offset_right = 407.0
+offset_bottom = 722.0
+flat = true
+
+[node name="Button7" type="Button" parent="CanvasLayer"]
+offset_left = 443.0
+offset_top = 607.0
+offset_right = 552.0
+offset_bottom = 721.0
+flat = true
+
+[node name="Button8" type="Button" parent="CanvasLayer"]
+offset_left = 591.0
+offset_top = 607.0
+offset_right = 700.0
+offset_bottom = 721.0
+flat = true
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 1183.0
+offset_top = 373.0
+offset_right = 1484.0
+offset_bottom = 423.0
+theme = ExtResource("3_5psqm")
+
+[node name="Wooden-floor-background53876-88628" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.356863)
+position = Vector2(963.5, 544.5)
+scale = Vector2(2.60405, 2.20892)
+texture = ExtResource("5_vcs71")
+
+[node name="Divider-003" type="Sprite2D" parent="."]
+position = Vector2(699, 106)
+scale = Vector2(2, 2)
+texture = ExtResource("6_ribbr")
+
+[node name="Divider-004" type="Sprite2D" parent="."]
+position = Vector2(1244, 104)
+scale = Vector2(-2, -2)
+texture = ExtResource("6_ribbr")
+
+[node name="Classes" type="Sprite2D" parent="."]
+position = Vector2(426, 589)
+scale = Vector2(0.5, 0.506)
+texture = ExtResource("7_pseng")
+
+[connection signal="pressed" from="CanvasLayer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button5" to="." method="_on_button_5_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button6" to="." method="_on_button_6_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button7" to="." method="_on_button_7_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button8" to="." method="_on_button_8_pressed"]

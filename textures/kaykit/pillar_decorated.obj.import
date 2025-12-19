@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ci58wynhxuj2w"
+path="res://.godot/imported/pillar_decorated.obj-02aaff409068cf0c86057f66ab1b16a8.mesh"
+
+[deps]
+
+files=["res://.godot/imported/pillar_decorated.obj-02aaff409068cf0c86057f66ab1b16a8.mesh"]
+
+source_file="res://textures/kaykit/pillar_decorated.obj"
+dest_files=["res://.godot/imported/pillar_decorated.obj-02aaff409068cf0c86057f66ab1b16a8.mesh", "res://.godot/imported/pillar_decorated.obj-02aaff409068cf0c86057f66ab1b16a8.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

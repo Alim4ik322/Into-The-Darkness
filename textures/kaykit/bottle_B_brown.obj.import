@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://eowd2uc380mp"
+path="res://.godot/imported/bottle_B_brown.obj-ee7bf7078f2251bccb070f3c8c4f79bc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/bottle_B_brown.obj-ee7bf7078f2251bccb070f3c8c4f79bc.mesh"]
+
+source_file="res://textures/kaykit/bottle_B_brown.obj"
+dest_files=["res://.godot/imported/bottle_B_brown.obj-ee7bf7078f2251bccb070f3c8c4f79bc.mesh", "res://.godot/imported/bottle_B_brown.obj-ee7bf7078f2251bccb070f3c8c4f79bc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

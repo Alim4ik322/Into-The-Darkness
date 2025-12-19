@@ -1,0 +1,145 @@
+[gd_scene load_steps=12 format=3 uid="uid://c05vd2nxmwqn7"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_dapwa"]
+[ext_resource type="Theme" uid="uid://cb4pn3lr6dj6p" path="res://UI/MenuTheme.tres" id="2_wl6ok"]
+[ext_resource type="Theme" uid="uid://dqvrtofb43c0l" path="res://UI/MenuTheme_40.tres" id="3_bfy14"]
+[ext_resource type="ArrayMesh" uid="uid://dnoyx27qnmtiv" path="res://textures/floor_2.res" id="4_2m6xf"]
+[ext_resource type="Texture2D" uid="uid://dcdpn3yg64cg8" path="res://UI/sprites/PNG/Double/Border/panel-border-028.png" id="4_pyfpm"]
+[ext_resource type="ArrayMesh" uid="uid://b25ycvagcuvm1" path="res://textures/wall.res" id="5_revi4"]
+[ext_resource type="PackedScene" uid="uid://cxd4fpcgw2rxu" path="res://scenes/bonfire.tscn" id="6_jeu63"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_64wjf"]
+sky_top_color = Color(0.159061, 0.197421, 0.250767, 1)
+sky_horizon_color = Color(0.592269, 0.593814, 0.597808, 1)
+sky_energy_multiplier = 0.7
+ground_bottom_color = Color(0.210016, 0.177835, 0.140466, 1)
+ground_horizon_color = Color(0.217654, 0.223707, 0.233263, 1)
+
+[sub_resource type="Sky" id="Sky_xtgni"]
+sky_material = SubResource("ProceduralSkyMaterial_64wjf")
+
+[sub_resource type="Environment" id="Environment_51x3v"]
+background_mode = 2
+sky = SubResource("Sky_xtgni")
+glow_enabled = true
+glow_intensity = 0.5
+
+[sub_resource type="MeshLibrary" id="MeshLibrary_rl237"]
+item/0/name = "floor_1"
+item/0/mesh = ExtResource("4_2m6xf")
+item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/shapes = []
+item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/navigation_layers = 1
+item/1/name = "wall_1"
+item/1/mesh = ExtResource("5_revi4")
+item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/shapes = []
+item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/navigation_layers = 1
+
+[node name="Menu" type="Node"]
+script = ExtResource("1_dapwa")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_51x3v")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Into the darkness" type="Label" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -908.0
+offset_top = 36.0
+offset_right = -77.0
+offset_bottom = 171.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_wl6ok")
+text = "Into the darkness"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitButton" type="Button" parent="UI"]
+offset_left = 51.0
+offset_top = 779.0
+offset_right = 545.0
+offset_bottom = 884.0
+theme = ExtResource("3_bfy14")
+text = "Выход"
+flat = true
+
+[node name="StartButton" type="Button" parent="UI"]
+offset_left = 52.0
+offset_top = 353.0
+offset_right = 545.0
+offset_bottom = 457.0
+theme = ExtResource("3_bfy14")
+text = "Начать игру"
+flat = true
+
+[node name="JoinButton" type="Button" parent="UI"]
+offset_left = 52.0
+offset_top = 494.0
+offset_right = 545.0
+offset_bottom = 598.0
+theme = ExtResource("3_bfy14")
+text = "Присоединиться
+"
+flat = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI"]
+offset_left = 52.0
+offset_top = 353.0
+offset_right = 545.0
+offset_bottom = 457.0
+texture = ExtResource("4_pyfpm")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="UI"]
+offset_left = 52.0
+offset_top = 494.0
+offset_right = 545.0
+offset_bottom = 598.0
+texture = ExtResource("4_pyfpm")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="NinePatchRect4" type="NinePatchRect" parent="UI"]
+offset_left = 52.0
+offset_top = 780.0
+offset_right = 545.0
+offset_bottom = 884.0
+texture = ExtResource("4_pyfpm")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="Dungeon" type="Node3D" parent="."]
+
+[node name="Floor" type="GridMap" parent="Dungeon"]
+mesh_library = SubResource("MeshLibrary_rl237")
+cell_size = Vector3(1.6, 1.6, 1.6)
+data = {
+"cells": PackedInt32Array(0, 0, 0, 65535, 0, 0, 65535, 65535, 0, 0, 65535, 0, 1, 65535, 0, 1, 0, 0, 1, 1, 0, 65535, 1, 0, 65534, 1, 0, 0, 1, 0, 65533, 1, 0, 65533, 0, 0, 65534, 0, 0, 65534, 65535, 0, 65534, 65534, 0, 65535, 65534, 0, 0, 65534, 0, 1, 65534, 0, 2, 65535, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 1, 2, 0, 0, 2, 0, 65535, 2, 0, 65534, 2, 0, 65533, 2, 0, 65533, 65535, 0, 65533, 65534, 0, 2, 65534, 0, 65533, 65533, 0, 65534, 65533, 0, 65535, 65533, 0, 0, 65533, 0, 1, 65533, 0, 2, 65533, 0, 3, 65533, 0, 3, 65534, 0, 3, 65535, 0, 3, 0, 0, 3, 1, 0, 3, 2, 0, 3, 3, 0, 2, 3, 0, 1, 3, 0, 0, 3, 0, 65535, 3, 0, 65534, 3, 0, 65533, 3, 0, 65532, 3, 0, 65532, 65533, 0, 65532, 65534, 0, 65532, 65535, 0, 65532, 0, 0, 65532, 1, 0, 65532, 2, 0, 65531, 3, 0, 65531, 2, 0, 65531, 1, 0, 65531, 0, 0, 65531, 65535, 0, 65531, 65534, 0, 65531, 65533, 0, 65531, 65532, 0, 65532, 65532, 0, 65533, 65532, 0, 65534, 65532, 0, 65535, 65532, 0, 0, 65532, 0, 1, 65532, 0, 2, 65532, 0, 3, 65532, 0, 4, 65532, 0, 4, 65533, 0, 4, 65534, 0, 4, 65535, 0, 4, 0, 0, 4, 1, 0, 4, 2, 0, 4, 3, 0, 4, 4, 0, 3, 4, 0, 2, 4, 0, 1, 4, 0, 0, 4, 0, 65535, 4, 0, 65534, 4, 0, 65533, 4, 0, 65532, 4, 0, 65531, 4, 0, 65530, 4, 0, 65530, 3, 0, 65530, 2, 0, 65530, 1, 0, 65530, 0, 0, 65530, 65535, 0, 65530, 65534, 0, 65530, 65533, 0, 65530, 65532, 0, 65530, 65531, 0, 65531, 65531, 0, 65532, 65531, 0, 65533, 65530, 0, 65534, 65530, 0, 65535, 65531, 0, 0, 65531, 0, 1, 65531, 0, 2, 65531, 0, 3, 65531, 0, 4, 65531, 0, 5, 65531, 0, 0, 65530, 0, 65535, 65530, 0, 65532, 65530, 0, 65531, 65530, 0, 65530, 65530, 0, 65534, 65531, 0, 65533, 65531, 0, 1, 65530, 0, 2, 65530, 0, 3, 65530, 0, 4, 65530, 0, 5, 65530, 0, 6, 65530, 0, 5, 65532, 0, 5, 65533, 0, 5, 65534, 0, 5, 65535, 0, 5, 0, 0, 5, 1, 0, 5, 2, 0, 5, 3, 0, 5, 4, 0, 6, 4, 0, 6, 3, 0, 6, 2, 0, 6, 1, 0, 6, 0, 0, 6, 65535, 0, 6, 65534, 0, 6, 65533, 0, 6, 65532, 0, 6, 65531, 0, 65529, 65530, 0, 65529, 65531, 0, 65529, 65532, 0, 65529, 65533, 0, 65529, 65534, 0, 65529, 65535, 0, 65529, 0, 0, 65529, 3, 0, 65529, 2, 0, 65529, 4, 0, 65529, 5, 0, 65530, 5, 0, 65531, 5, 0, 65532, 5, 0, 65533, 5, 0, 65534, 5, 0, 65535, 5, 0, 0, 5, 0, 1, 5, 0, 2, 5, 0, 3, 5, 0, 4, 5, 0, 5, 5, 0, 6, 5, 0, 6, 65529, 0, 5, 65529, 0, 4, 65529, 0, 3, 65529, 0, 2, 65529, 0, 1, 65529, 0, 0, 65529, 0, 65535, 65529, 0, 65534, 65529, 0, 65533, 65529, 0, 65532, 65529, 0, 65531, 65529, 0, 65530, 65529, 0, 65529, 65529, 0, 65529, 1, 0, 7, 3, 0, 7, 4, 0, 7, 5, 0, 7, 2, 0, 7, 1, 0, 7, 0, 0, 7, 65535, 0, 7, 65534, 0, 7, 65533, 0, 7, 65532, 0, 7, 65531, 0, 7, 65530, 0, 7, 65529, 0, 7, 65528, 0, 6, 65528, 0, 5, 65528, 0, 4, 65528, 0, 3, 65528, 0, 2, 65528, 0, 1, 65528, 0, 0, 65528, 0, 65535, 65528, 0, 65534, 65528, 0, 65533, 65528, 0, 65532, 65528, 0, 65531, 65528, 0, 65530, 65528, 0, 65529, 65528, 0, 65528, 65528, 0, 65528, 65529, 0, 65528, 65530, 0, 65528, 65531, 0, 65528, 65532, 0, 65528, 65533, 0, 65528, 65534, 0, 65528, 65535, 0, 65528, 0, 0, 65528, 1, 0, 65528, 2, 0, 65528, 3, 0, 65528, 4, 0, 65528, 5, 0, 65528, 6, 0, 65529, 6, 0, 65530, 6, 0, 65531, 6, 0, 65532, 6, 0, 65533, 6, 0, 65534, 6, 0, 65535, 6, 0, 0, 6, 0, 1, 6, 0, 2, 6, 0, 3, 6, 0, 4, 6, 0, 5, 6, 0, 6, 6, 0, 7, 6, 0, 8, 6, 0, 8, 5, 0, 8, 4, 0, 8, 3, 0, 8, 2, 0, 8, 1, 0, 8, 0, 0, 8, 65535, 0, 8, 65534, 0, 8, 65533, 0, 8, 65532, 0, 8, 65531, 0, 8, 65530, 0, 8, 65529, 0, 8, 65528, 0, 8, 65527, 0, 7, 65527, 0, 6, 65527, 0, 5, 65527, 0, 4, 65527, 0, 3, 65527, 0, 2, 65527, 0, 1, 65527, 0, 0, 65527, 0, 65535, 65527, 0, 65534, 65527, 0, 65533, 65527, 0, 65532, 65527, 0, 65531, 65527, 0, 65530, 65527, 0, 65529, 65527, 0, 65528, 65527, 0, 65527, 65527, 0, 65527, 65528, 0, 65527, 65529, 0, 65527, 65530, 0, 65527, 65531, 0, 65527, 65532, 0, 65527, 65533, 0, 65527, 65534, 0, 65527, 65535, 0, 65527, 0, 0, 65527, 1, 0, 65527, 2, 0, 65528, 7, 0, 65527, 5, 0, 65527, 4, 0, 65527, 3, 0, 65527, 6, 0, 65527, 7, 0, 65529, 7, 0, 65530, 7, 0, 65531, 7, 0, 65532, 7, 0, 65533, 7, 0, 65534, 7, 0, 65535, 7, 0, 0, 7, 0, 1, 7, 0, 2, 7, 0, 3, 7, 0, 4, 7, 0, 5, 7, 0, 6, 7, 0, 7, 7, 0, 8, 7, 0, 9, 7, 0, 9, 6, 0, 9, 5, 0, 9, 4, 0, 9, 3, 0, 9, 2, 0, 9, 1, 0, 9, 0, 0, 9, 65535, 0, 9, 65529, 0, 9, 65528, 0, 9, 65527, 0, 9, 65530, 0, 9, 65531, 0, 9, 65532, 0, 9, 65533, 0, 9, 65534, 0, 9, 65526, 0, 8, 65526, 0, 7, 65526, 0, 6, 65526, 0, 5, 65526, 0, 4, 65526, 0, 3, 65526, 0, 2, 65526, 0, 1, 65526, 0, 0, 65526, 0, 65535, 65526, 0, 65535, 65525, 0, 65534, 65525, 0, 65533, 65525, 0, 65532, 65525, 0, 65532, 65526, 0, 65531, 65526, 0, 65530, 65526, 0, 65529, 65526, 0, 65528, 65526, 0, 65527, 65526, 0, 65526, 65526, 0, 65533, 65526, 0, 65534, 65526, 0, 65526, 65527, 0, 65526, 65528, 0, 65526, 65529, 0, 65526, 65530, 0, 65526, 65531, 0, 65526, 65532, 0, 65526, 65533, 0, 65526, 65534, 0, 65526, 65535, 0, 65526, 0, 0, 65526, 1, 0, 65526, 2, 0, 65526, 3, 0, 65526, 4, 0, 65526, 5, 0, 65526, 6, 0, 65526, 7, 0, 65526, 8, 0, 65527, 8, 0, 65528, 8, 0, 65529, 8, 0, 65530, 8, 0, 65531, 8, 0, 65532, 8, 0, 65533, 8, 0, 65534, 8, 0, 65535, 8, 0, 0, 8, 0, 1, 8, 0, 2, 8, 0, 3, 8, 0, 4, 8, 0, 5, 8, 0, 6, 8, 0, 7, 8, 0, 8, 8, 0, 9, 8, 0, 10, 8, 0, 10, 7, 0, 10, 6, 0, 10, 5, 0, 10, 4, 0, 10, 3, 0, 10, 2, 0, 10, 1, 0, 10, 0, 0, 10, 65535, 0, 10, 65534, 0, 10, 65533, 0, 10, 65531, 0, 10, 65530, 0, 10, 65529, 0, 10, 65528, 0, 10, 65527, 0, 10, 65526, 0, 10, 65532, 0, 9, 65525, 0, 10, 65525, 0, 8, 65525, 0, 7, 65525, 0, 6, 65525, 0, 5, 65525, 0, 4, 65525, 0, 3, 65525, 0, 2, 65525, 0, 1, 65525, 0, 0, 65525, 0, 65531, 65525, 0, 65530, 65525, 0, 65529, 65525, 0, 65528, 65525, 0, 65527, 65525, 0, 65526, 65525, 0, 65525, 65525, 0, 65525, 65526, 0, 65525, 65531, 0, 65525, 65530, 0, 65525, 65529, 0, 65525, 65528, 0, 65525, 65527, 0, 65525, 0, 0, 65525, 1, 0, 65525, 2, 0, 65525, 3, 0, 65525, 4, 0, 65525, 5, 0, 65525, 6, 0, 65525, 7, 0, 65525, 8, 0, 65525, 65535, 0, 65525, 65534, 0, 65525, 65533, 0, 65525, 65532, 0, 65525, 9, 0, 65526, 9, 0, 65527, 9, 0, 65528, 9, 0, 65529, 9, 0, 65530, 9, 0, 65531, 9, 0, 65532, 9, 0, 65533, 9, 0, 65534, 9, 0, 65535, 9, 0, 0, 9, 0, 1, 9, 0, 2, 9, 0, 3, 9, 0, 4, 9, 0, 5, 9, 0, 6, 9, 0, 7, 9, 0, 8, 9, 0, 9, 9, 0, 10, 9, 0)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.927653, 0.178179, -0.328194, 0.0437053, 0.820995, 0.56926, 0.370876, -0.54242, 0.753812, -4.78128, 4.97615, 2.63938)
+current = true
+fov = 86.2
+
+[node name="Bonfire" parent="." instance=ExtResource("6_jeu63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09703, 0)
+
+[connection signal="pressed" from="UI/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="UI/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="UI/JoinButton" to="." method="_on_join_button_pressed"]

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dm6uh7xbbsn8e"
+path="res://.godot/imported/banner_shield_yellow.obj-213bedde82f0eaaed8caaf4d2c3d2cff.mesh"
+
+[deps]
+
+files=["res://.godot/imported/banner_shield_yellow.obj-213bedde82f0eaaed8caaf4d2c3d2cff.mesh"]
+
+source_file="res://textures/kaykit/banner_shield_yellow.obj"
+dest_files=["res://.godot/imported/banner_shield_yellow.obj-213bedde82f0eaaed8caaf4d2c3d2cff.mesh", "res://.godot/imported/banner_shield_yellow.obj-213bedde82f0eaaed8caaf4d2c3d2cff.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

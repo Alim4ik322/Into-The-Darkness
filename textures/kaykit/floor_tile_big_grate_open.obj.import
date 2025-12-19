@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://1aasxobnlmbr"
+path="res://.godot/imported/floor_tile_big_grate_open.obj-e8b135662d6593debf58d2e1962a40d3.mesh"
+
+[deps]
+
+files=["res://.godot/imported/floor_tile_big_grate_open.obj-e8b135662d6593debf58d2e1962a40d3.mesh"]
+
+source_file="res://textures/kaykit/floor_tile_big_grate_open.obj"
+dest_files=["res://.godot/imported/floor_tile_big_grate_open.obj-e8b135662d6593debf58d2e1962a40d3.mesh", "res://.godot/imported/floor_tile_big_grate_open.obj-e8b135662d6593debf58d2e1962a40d3.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

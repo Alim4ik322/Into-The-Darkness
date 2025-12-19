@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://he5nj3vppgb0"
+path="res://.godot/imported/plate.obj-3b5e17879791946f459f09f6aac382ff.mesh"
+
+[deps]
+
+files=["res://.godot/imported/plate.obj-3b5e17879791946f459f09f6aac382ff.mesh"]
+
+source_file="res://textures/kaykit/plate.obj"
+dest_files=["res://.godot/imported/plate.obj-3b5e17879791946f459f09f6aac382ff.mesh", "res://.godot/imported/plate.obj-3b5e17879791946f459f09f6aac382ff.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c7h6omc7c62vl"
+path="res://.godot/imported/torch.obj-f2f125ae10032e2b5ae313d6f5bf6b2f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/torch.obj-f2f125ae10032e2b5ae313d6f5bf6b2f.mesh"]
+
+source_file="res://textures/kaykit/torch.obj"
+dest_files=["res://.godot/imported/torch.obj-f2f125ae10032e2b5ae313d6f5bf6b2f.mesh", "res://.godot/imported/torch.obj-f2f125ae10032e2b5ae313d6f5bf6b2f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

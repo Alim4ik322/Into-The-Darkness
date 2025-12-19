@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cx6cihkttmpd0"
+path="res://.godot/imported/wall.obj-2be1b59aa24b07f18df226e8801c5b20.mesh"
+
+[deps]
+
+files=["res://.godot/imported/wall.obj-2be1b59aa24b07f18df226e8801c5b20.mesh"]
+
+source_file="res://textures/kaykit/wall.obj"
+dest_files=["res://.godot/imported/wall.obj-2be1b59aa24b07f18df226e8801c5b20.mesh", "res://.godot/imported/wall.obj-2be1b59aa24b07f18df226e8801c5b20.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

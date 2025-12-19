@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cfjfs00qwcje8"
+path="res://.godot/imported/banner_brown.obj-874b8cb3fb0e0be39e98890d6751dffe.mesh"
+
+[deps]
+
+files=["res://.godot/imported/banner_brown.obj-874b8cb3fb0e0be39e98890d6751dffe.mesh"]
+
+source_file="res://textures/kaykit/banner_brown.obj"
+dest_files=["res://.godot/imported/banner_brown.obj-874b8cb3fb0e0be39e98890d6751dffe.mesh", "res://.godot/imported/banner_brown.obj-874b8cb3fb0e0be39e98890d6751dffe.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

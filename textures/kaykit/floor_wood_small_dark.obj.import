@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://kg13lgpn7pke"
+path="res://.godot/imported/floor_wood_small_dark.obj-bcca8675d2875c846c07a507ed607b40.mesh"
+
+[deps]
+
+files=["res://.godot/imported/floor_wood_small_dark.obj-bcca8675d2875c846c07a507ed607b40.mesh"]
+
+source_file="res://textures/kaykit/floor_wood_small_dark.obj"
+dest_files=["res://.godot/imported/floor_wood_small_dark.obj-bcca8675d2875c846c07a507ed607b40.mesh", "res://.godot/imported/floor_wood_small_dark.obj-bcca8675d2875c846c07a507ed607b40.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
