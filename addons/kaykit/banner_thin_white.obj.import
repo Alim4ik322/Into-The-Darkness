@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://crjdj7tfl4dj5"
+path="res://.godot/imported/banner_thin_white.obj-e7ae85ad6e88bd1e1778205bbf5e7fcc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/banner_thin_white.obj-e7ae85ad6e88bd1e1778205bbf5e7fcc.mesh"]
+
+source_file="res://addons/kaykit/banner_thin_white.obj"
+dest_files=["res://.godot/imported/banner_thin_white.obj-e7ae85ad6e88bd1e1778205bbf5e7fcc.mesh", "res://.godot/imported/banner_thin_white.obj-e7ae85ad6e88bd1e1778205bbf5e7fcc.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

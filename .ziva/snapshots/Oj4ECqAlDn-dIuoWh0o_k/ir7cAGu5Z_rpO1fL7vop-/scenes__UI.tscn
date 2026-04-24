@@ -1,0 +1,195 @@
+[gd_scene load_steps=22 format=3 uid="uid://buiui123"]
+
+[ext_resource type="Texture2D" uid="uid://jreqabofbopf" path="res://sprites/mana2.png" id="1_mana2"]
+[ext_resource type="Texture2D" uid="uid://b3v4r4hajn2hd" path="res://sprites/mana1.png" id="2_mana1"]
+[ext_resource type="Texture2D" uid="uid://w67mqgs3nyxv" path="res://sprites/stamina2.png" id="3_stamina2"]
+[ext_resource type="Texture2D" uid="uid://c3avqfkopfkb0" path="res://sprites/stamina1.png" id="4_stamina1"]
+[ext_resource type="Texture2D" uid="uid://dxau5dfkue3cn" path="res://sprites/hungry2.png" id="5_hungry2"]
+[ext_resource type="Texture2D" uid="uid://e4ioag6cbwhd" path="res://sprites/hungry1.png" id="6_hungry1"]
+[ext_resource type="Texture2D" uid="uid://cglyg4igi6ljn" path="res://sprites/water2.png" id="7_water2"]
+[ext_resource type="Texture2D" uid="uid://rqebnw8n5rd7" path="res://sprites/water1.png" id="8_water1"]
+[ext_resource type="Texture2D" uid="uid://cgtcsra06tt26" path="res://sprites/health_pustoy.png" id="9_hp_empty"]
+[ext_resource type="Texture2D" uid="uid://825fdefxtqyg" path="res://sprites/health_polny.png" id="10_hp_full"]
+[ext_resource type="Texture2D" uid="uid://p0qcfvyjvh83" path="res://sprites/animation_drg1.png" id="11_drg1"]
+[ext_resource type="Texture2D" uid="uid://dl7q63bwhw2fl" path="res://sprites/animation_drg2.png" id="12_drg2"]
+[ext_resource type="Texture2D" uid="uid://fwkl87jvwkdb" path="res://sprites/animation_drg3.png" id="13_drg3"]
+[ext_resource type="Texture2D" uid="uid://dbwa4mewvckwl" path="res://sprites/animation_drg4.png" id="14_drg4"]
+[ext_resource type="Texture2D" uid="uid://ojv2acf58qbi" path="res://sprites/animation_drg5.png" id="15_drg5"]
+[ext_resource type="Theme" uid="uid://dqvrtofb43c0l" path="res://UI/MenuTheme_40.tres" id="16_theme40"]
+[ext_resource type="Texture2D" uid="uid://dcdpn3yg64cg8" path="res://UI/sprites/PNG/Double/Border/panel-border-028.png" id="17_border"]
+[ext_resource type="Texture2D" uid="uid://c6mlu0luebbag" path="res://UI/sprites/wooden-floor-background_53876-88628.jpg" id="18_bg"]
+[ext_resource type="Theme" uid="uid://cb4pn3lr6dj6p" path="res://UI/MenuTheme.tres" id="19_theme"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_drg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_drg1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_drg2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_drg3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_drg4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_drg5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="MPProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 133.0
+offset_top = 138.0
+offset_right = 384.0
+offset_bottom = 154.0
+value = 100.0
+texture_under = ExtResource("1_mana2")
+texture_progress = ExtResource("2_mana1")
+
+[node name="StaminaProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 133.0
+offset_top = 117.0
+offset_right = 384.0
+offset_bottom = 133.0
+value = 100.0
+texture_under = ExtResource("3_stamina2")
+texture_progress = ExtResource("4_stamina1")
+
+[node name="HungryProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 133.0
+offset_top = 159.0
+offset_right = 384.0
+offset_bottom = 175.0
+value = 100.0
+texture_under = ExtResource("5_hungry2")
+texture_progress = ExtResource("6_hungry1")
+
+[node name="WaterProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 133.0
+offset_top = 180.0
+offset_right = 384.0
+offset_bottom = 196.0
+value = 100.0
+texture_under = ExtResource("7_water2")
+texture_progress = ExtResource("8_water1")
+
+[node name="HPProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 117.0
+offset_top = 67.0
+offset_right = 431.0
+offset_bottom = 120.0
+value = 100.0
+texture_under = ExtResource("9_hp_empty")
+texture_progress = ExtResource("10_hp_full")
+
+[node name="HP" type="AnimatedSprite2D" parent="."]
+position = Vector2(76, 126)
+scale = Vector2(0.333161, 0.333161)
+sprite_frames = SubResource("SpriteFrames_drg")
+autoplay = "default"
+
+[node name="Pause_menu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Pause_menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="ExitButton" type="Button" parent="Pause_menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = 58.0
+offset_right = 116.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("16_theme40")
+text = "ВЫХОД"
+
+[node name="Exit_NinePatchRect" type="NinePatchRect" parent="Pause_menu/ExitButton"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_border")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="ResumeButton" type="Button" parent="Pause_menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = -24.0
+offset_right = 116.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("16_theme40")
+text = "ПРОДОЛЖИТЬ"
+
+[node name="Resume_NinePatchRect" type="NinePatchRect" parent="Pause_menu/ResumeButton"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_border")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="Pause_sprite" type="Sprite2D" parent="Pause_menu"]
+show_behind_parent = true
+position = Vector2(576, 324)
+scale = Vector2(0.3, 0.4)
+texture = ExtResource("18_bg")
+
+[node name="Label" type="Label" parent="Pause_menu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.0
+offset_top = 175.0
+offset_right = 105.0
+offset_bottom = 244.0
+grow_horizontal = 2
+theme = ExtResource("19_theme")
+theme_override_font_sizes/font_size = 50
+text = "ПАУЗА"

@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://bardob1kgply3"]
+
+[ext_resource type="PackedScene" uid="uid://bjd172deipoa0" path="res://textures/FreeModelsTextures/torch_holder.gltf" id="1_k33h7"]
+[ext_resource type="PackedScene" uid="uid://bke1y0qwynd55" path="res://textures/FreeModelsTextures/torch_off_handle.gltf" id="2_8mhhh"]
+[ext_resource type="PackedScene" uid="uid://cyc6nmkfup3r1" path="res://textures/FreeModelsTextures/torch_off_head.gltf" id="3_bma1w"]
+[ext_resource type="PackedScene" uid="uid://b6nqld3durjqe" path="res://textures/FreeModelsTextures/torch_head.gltf" id="4_djai8"]
+[ext_resource type="Gradient" path="res://textures/Fire.tres" id="5_g2t0v"]
+[ext_resource type="Texture2D" uid="uid://dpgq0dnog6u63" path="res://textures/Smoke30Frames_0.png" id="6_a07ml"]
+[ext_resource type="AudioStream" uid="uid://ciwte17iqk7ba" path="res://sound/fire.wav" id="7_dlfj7"]
+[ext_resource type="Script" uid="uid://cbhxopombch60" path="res://scripts/torch.gd" id="8_g2t0v"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pvw6y"]
+gradient = ExtResource("5_g2t0v")
+width = 2048
+
+[sub_resource type="Curve" id="Curve_1qdpy"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.137476, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gsjf6"]
+width = 2048
+curve = SubResource("Curve_1qdpy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8mjnq"]
+emission_shape = 1
+emission_sphere_radius = 0.1
+angle_min = 1.00001
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.6
+initial_velocity_max = 0.6
+angular_velocity_min = 39.0
+angular_velocity_max = 41.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 3.0
+linear_accel_max = 5.0
+scale_min = 0.2
+scale_max = 1.8
+scale_curve = SubResource("CurveTexture_gsjf6")
+color_ramp = SubResource("GradientTexture1D_pvw6y")
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+anim_offset_max = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l5nvp"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("6_a07ml")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 5
+particles_anim_loop = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_xeorh"]
+material = SubResource("StandardMaterial3D_l5nvp")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2t0v"]
+radius = 0.4404297
+height = 3.2348633
+
+[node name="Torch" type="StaticBody3D" unique_id=951851502]
+
+[node name="torch_holder2" parent="." unique_id=1487083275 instance=ExtResource("1_k33h7")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="torch_off_handle2" parent="torch_holder2" unique_id=968677375 instance=ExtResource("2_8mhhh")]
+
+[node name="torch_off_head2" parent="torch_holder2/torch_off_handle2" unique_id=1122805131 instance=ExtResource("3_bma1w")]
+visible = false
+
+[node name="torch_head2" parent="torch_holder2/torch_off_handle2" unique_id=515774120 instance=ExtResource("4_djai8")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=518695878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.461154, 0)
+amount = 50
+amount_ratio = 0.5
+lifetime = 0.6
+randomness = 1.0
+fixed_fps = 60
+visibility_aabb = AABB(-1.09345, -1.07259, -1.09749, 2.18977, 2.72846, 2.19448)
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_8mjnq")
+draw_pass_1 = SubResource("QuadMesh_xeorh")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1608687761]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.461154, 0)
+stream = ExtResource("7_dlfj7")
+volume_db = 1.0
+max_db = 0.273
+autoplay = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=116543189]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20541823, 1.7453789, 0)
+light_color = Color(0.9708609, 0.7484693, 0.64927226, 1)
+light_energy = 2.0
+light_size = 0.5
+light_specular = 0.0
+shadow_enabled = true
+shadow_normal_bias = 5.0
+shadow_blur = 3.0
+omni_range = 15.0
+omni_attenuation = 0.3
+script = ExtResource("8_g2t0v")
+base_energy = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1644585081]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61743164, 0)
+shape = SubResource("CapsuleShape3D_g2t0v")

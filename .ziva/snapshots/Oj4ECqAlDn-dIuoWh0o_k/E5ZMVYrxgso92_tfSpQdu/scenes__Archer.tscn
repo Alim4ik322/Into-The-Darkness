@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://carcher123"]
+
+[ext_resource type="Script" uid="uid://ckdgse065ge1k" path="res://scripts/archer.gd" id="1_archer_script"]
+[ext_resource type="PackedScene" uid="uid://bd7jvwey0tgee" path="res://textures/Archer.glb" id="2_archer_model"]
+[ext_resource type="Script" uid="uid://30vl5m2kvs4n" path="res://scenes/camera_pivot.gd" id="3_camera_script"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
+
+[node name="Archer" type="CharacterBody3D" unique_id=1702426438]
+script = ExtResource("1_archer_script")
+
+[node name="Archer_model" parent="." unique_id=282523361 instance=ExtResource("2_archer_model")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1941685720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_1")
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=2136709473]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+script = ExtResource("3_camera_script")
+
+[node name="CameraVerticalPivot" type="Node3D" parent="CameraPivot" unique_id=1842664987]
+
+[node name="CameraVerticalPivot#CameraZoomPivot" type="Node3D" parent="." unique_id=91877165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="CameraPivot_CameraVerticalPivot_CameraZoomPivot#Camera3D" type="Camera3D" parent="." unique_id=541223824]
+current = true

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cksfv7x0lp1ho"
+path="res://.godot/imported/bed_frame.obj-ebacb53cbe5c7778448ee00ba167d392.mesh"
+
+[deps]
+
+files=["res://.godot/imported/bed_frame.obj-ebacb53cbe5c7778448ee00ba167d392.mesh"]
+
+source_file="res://addons/kaykit/bed_frame.obj"
+dest_files=["res://.godot/imported/bed_frame.obj-ebacb53cbe5c7778448ee00ba167d392.mesh", "res://.godot/imported/bed_frame.obj-ebacb53cbe5c7778448ee00ba167d392.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

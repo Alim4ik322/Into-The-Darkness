@@ -1,0 +1,20 @@
+extends Node3D
+
+func _ready():
+	if multiplayer.is_server():
+		multiplayer.peer_connected.connect(_spawn)
+		_spawn(1)
+
+func _spawn(id):
+	var p_class = Global.players.get(id, {}).get("class", "Warrior")
+	var scene_path = "res://scenes/Warrior.tscn" if p_class == "Warrior" else "res://scenes/Archer.tscn"
+	var scene = load(scene_path)
+	var p = scene.instantiate()
+	p.name = str(id)
+	
+	add_child(p, true)
+	
+	var marker = $Player if id == 1 else $Player2
+	if marker:
+		p.global_position = marker.global_position
+		print("[DEBUG] Spawned ", id, " at ", p.global_position)

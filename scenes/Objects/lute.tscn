@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://chgb325kb4uy7"]
+
+[ext_resource type="Script" uid="uid://dl6ob2grg8lnv" path="res://scripts/lute.gd" id="1_u2pi4"]
+
+[node name="Lute" type="Node3D" unique_id=2038813591]
+script = ExtResource("1_u2pi4")
