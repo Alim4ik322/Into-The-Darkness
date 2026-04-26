@@ -83,6 +83,12 @@ func _update_lobby_ui():
 
 func update_player_class(ClassName: String) -> void:
 	Global.selected_class = ClassName
+	# Если мы еще не создали сервер/клиент, просто выходим
+	if multiplayer.multiplayer_peer == null:
+		print("Сеть не создана, класс выбран локально: ", ClassName)
+		return
+		
+	# Если сеть есть, шлем RPC
 	rpc("set_player_class", multiplayer.get_unique_id(), ClassName)
 
 @rpc("any_peer", "call_local")

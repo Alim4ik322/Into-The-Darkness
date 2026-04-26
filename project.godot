@@ -21,6 +21,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="ITD"
 run/main_scene="res://scenes/UI/Menu.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
+run/max_fps=60
 boot_splash/show_image=false
 
 [audio]
@@ -30,6 +31,7 @@ driver/output_latency=10
 [autoload]
 
 Global="*res://scripts/Global.gd"
+GlobalMusic="*uid://d4ej726v4rqwa"
 
 [display]
 
@@ -45,6 +47,10 @@ window/show_image=false
 [filesystem]
 
 import/blender/enabled=false
+
+[global_group]
+
+Player=""
 
 [input]
 
@@ -122,4 +128,7 @@ E={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 anti_aliasing/quality/screen_space_aa=1

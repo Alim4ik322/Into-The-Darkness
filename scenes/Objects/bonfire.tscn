@@ -68,8 +68,9 @@ script = ExtResource("1_qgjai")
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Bonfire" unique_id=2083366242]
-amount = 200
-lifetime = 0.6
+amount = 150
+lifetime = 0.5
+explosiveness = 0.05
 randomness = 1.0
 fixed_fps = 60
 visibility_aabb = AABB(-1.09345, -1.07259, -1.09749, 2.18977, 2.72846, 2.19448)
@@ -85,13 +86,13 @@ autoplay = true
 [node name="OmniLight3D" type="OmniLight3D" parent="Bonfire" unique_id=1809467281]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.15896861, 0)
 light_color = Color(0.9665026, 0.7605676, 0.6260497, 1)
-light_energy = 6.0
+light_energy = 2.0
 light_size = 0.5
 light_specular = 0.0
 shadow_enabled = true
 shadow_bias = 2.0
 shadow_blur = 1.6
-omni_range = 15.0
+omni_range = 21.268661
 script = ExtResource("5_3c3cg")
 
 [node name="Area3D" type="Area3D" parent="Bonfire" unique_id=2068110195]

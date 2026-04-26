@@ -81,7 +81,8 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.461154, 0)
 amount = 50
 amount_ratio = 0.5
-lifetime = 0.6
+lifetime = 0.4
+explosiveness = 0.05
 randomness = 1.0
 fixed_fps = 60
 visibility_aabb = AABB(-1.09345, -1.07259, -1.09749, 2.18977, 2.72846, 2.19448)
@@ -92,7 +93,7 @@ draw_pass_1 = SubResource("QuadMesh_xeorh")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1608687761]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.461154, 0)
 stream = ExtResource("7_dlfj7")
-volume_db = 1.0
+volume_db = -5.0
 max_db = 0.273
 autoplay = true
 

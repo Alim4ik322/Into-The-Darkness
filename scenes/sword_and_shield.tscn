@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cvtidgb5x22b0"]
+
+[ext_resource type="PackedScene" uid="uid://cffd2kxlsdxix" path="res://textures/Weapon/Sword.glb" id="1_fpdkj"]
+[ext_resource type="Script" uid="uid://dt56dttoy6mhp" path="res://scripts/sword_and_shield.gd" id="1_oxpgr"]
+[ext_resource type="PackedScene" uid="uid://islgpprg3p1c" path="res://textures/Weapon/Shield.glb" id="2_oxpgr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j1sdl"]
+radius = 1.4215428
+
+[node name="Sword_and_Shield" type="Area3D" unique_id=416561454]
+script = ExtResource("1_oxpgr")
+
+[node name="Sword" parent="." unique_id=689504186 instance=ExtResource("1_fpdkj")]
+transform = Transform3D(0.7291867, 0.39447644, -0.5701681, -0.4391022, 0.90310824, 0.06325745, 0.5365561, 0.2029793, 0.8266338, 0, -1.2190211, -0.27234912)
+
+[node name="Shield" parent="." unique_id=229550890 instance=ExtResource("2_oxpgr")]
+transform = Transform3D(0.9963432, 6.1378236e-09, -0.14041704, 0.14041704, -4.3551545e-08, 0.9963432, 0, -1.0061891, -4.3981924e-08, -0.9448302, -1.2190714, 2.4039035)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=655993698]
+shape = SubResource("SphereShape3D_j1sdl")

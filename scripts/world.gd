@@ -1,70 +1,114 @@
 extends Node3D
 
-# Словарь путей к сценам персонажей для удобства
+# --- [ ССЫЛКИ НА УЗЛЫ ] ---
+@onready var hp_bar_master = $CanvasLayer/Control/HPBarMaster
+@onready var label1 = $CanvasLayer/Control/Label
+@onready var label2 = $CanvasLayer/Control/Label2
+@onready var label3 = $CanvasLayer/Control/Label3
+@onready var label4: Label = $CanvasLayer/Control/Label4
+
+# --- [ КОНСТАНТЫ ] ---
 const CHARACTER_SCENES = {
 	"Warrior": "res://scenes/Characters/Warrior.tscn",
 	"Archer": "res://scenes/Characters/Archer.tscn",
 	"Mage": "res://scenes/Characters/Mage.tscn"
 }
 
+# --- [ ОСНОВНЫЕ ФУНКЦИИ ] ---
+
 func _ready():
+	# Останавливаем музыку меню
+	if GlobalMusic.has_node("AudioStreamPlayer"):
+		GlobalMusic.get_node("AudioStreamPlayer").stop()
+	
+	# Скрываем все элементы UI при старте
+	if hp_bar_master: hp_bar_master.hide()
+	if label1: label1.hide()
+	if label2: label2.hide()
+	if label3: label3.hide()
+	if label4: label4.hide()
+
 	if not multiplayer.is_server(): return
 	
-	# Коннектим новых игроков, которые зайдут ПОСЛЕ старта
+	# Подключаем спавн игроков
 	multiplayer.peer_connected.connect(_spawn)
-	
-	# Спавним тех, кто УЖЕ в лобби (включая хоста с ID 1)
 	for id in Global.players:
 		_spawn(id)
-		
-	get_tree().create_timer(5.0).timeout.connect(_open_gate)
-
-
-func _open_gate():
-	var gate: Node3D = $"OBJECTS/door arc_038/bars_001"
 	
+	# ПРИМЕЧАНИЕ: Таймер открытия ворот отсюда УДАЛЕН. 
+	# Теперь ворота открывает Мастер, когда дойдет до рычага.
+
+@rpc("call_local", "reliable")
+func _open_gate():
+	# 1. Анимация ворот (поднимаем решетку)
+	var gate: Node3D = get_node_or_null("NavigationRegion3D/OBJECTS/door arc_038/bars_001")
 	if gate:
-		# Создаем плавную анимацию через Tween
 		var tween = create_tween()
-		# Поднимаем на 5 метров вверх за 2 секунды
 		tween.tween_property(gate, "position:z", gate.position.z + 2.75, 3.0)
+	
+	# 2. Показываем первую реплику Мастера
+	_sync_ui_element("label1", true)
+	
+	# 3. Запускаем озвучку/текст Мастера (включает анимацию talk1)
+	var master_node = get_node_or_null("Master")
+	if master_node and master_node.has_method("start_opening_speech"):
+		master_node.start_opening_speech.rpc()
+	
+	# 4. Через 5 секунд убираем приветствие и даем задание найти меч
+	get_tree().create_timer(5.0).timeout.connect(func():
+		_sync_ui_element("label1", false)
+		_sync_ui_element("label2", true)
+		# --- НОВОЕ: Таймер для исчезновения Label2 ---
+		get_tree().create_timer(5.0).timeout.connect(func():
+			_sync_ui_element.rpc("label2", false)
+			)
+	)
+
+# --- [ СЕТЕВАЯ ЛОГИКА (RPC) ] ---
+
+# Универсальная функция для управления видимостью UI на всех клиентах
+@rpc("any_peer", "call_local", "reliable")
+func _sync_ui_element(element_name: String, should_show: bool):
+	match element_name:
+		"label1": if label1: label1.visible = should_show
+		"label2": if label2: label2.visible = should_show
+		"label3": if label3: label3.visible = should_show
+		"label4": if label4: label4.visible = should_show
 
 func _spawn(id):
 	if has_node(str(id)): return
-	
-	# Получаем данные игрока и его класс
 	var p_data = Global.players.get(id, {})
 	var p_class = p_data.get("class", "Warrior")
-	
-	# Выбираем путь к сцене из словаря. Если класса нет в списке, берем Воина по дефолту.
 	var scene_path = CHARACTER_SCENES.get(p_class, CHARACTER_SCENES["Warrior"])
-	
-	# Проверка на существование файла перед загрузкой (чтобы не вылетело, если забыл создать файл)
-	if not FileAccess.file_exists(scene_path):
-		print("[ERROR] Scene file not found: ", scene_path)
-		return
+
+	if not FileAccess.file_exists(scene_path): return
 
 	var p = load(scene_path).instantiate()
 	p.name = str(id)
+	p.add_to_group("Player") 
 	
-	# 1. Находим точку спавна по маркерам в сцене
+	# Определяем точку спавна
 	var spawn_node = get_node_or_null("Player") if id == 1 else get_node_or_null("Player2")
-	var target_pos = Vector3(0, 5, 0) # Запасная позиция, если маркеры не найдены
+	var target_pos = spawn_node.position if spawn_node else Vector3(0, 5, 0)
 	
-	if spawn_node:
-		# Используем position, так как при добавлении в дерево он станет глобальным
-		target_pos = spawn_node.position 
-
-	# 2. Устанавливаем позицию ДО добавления в дерево
 	p.position = target_pos
-	
-	# 3. Добавляем игрока в мир
 	add_child(p, true)
 	
-	# 4. Принудительная синхронизация позиции для клиента (RPC)
-	# Хосту (ID 1) это не нужно, так как он и есть сервер
+	# Принудительная телепортация для синхронизации позиции на клиентах
 	if id != 1:
 		await get_tree().create_timer(0.5).timeout
 		if is_instance_valid(p):
 			p.force_teleport.rpc_id(id, target_pos)
-			print("[DEBUG] Teleport RPC sent to player ", id, " to position ", target_pos)
+
+# --- [ ВЗАИМОДЕЙСТВИЕ С ИГРОКОМ ] ---
+
+@rpc("any_peer", "call_local", "reliable")
+func swap_to_battle_labels():
+	# Прячем подсказку "Возьми меч" и показываем "Нападай!"
+	_sync_ui_element("label2", false)
+	_sync_ui_element("label3", true)
+	
+	# Label3 исчезнет сама через 5 секунд
+	get_tree().create_timer(5.0).timeout.connect(func():
+		_sync_ui_element("label3", false)
+	)

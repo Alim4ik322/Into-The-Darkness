@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://d4ej726v4rqwa"]
+
+[ext_resource type="AudioStream" uid="uid://x3w0c2nfyamw" path="res://sound/Music/Whispers of the Ancients.mp3" id="1_p76w3"]
+
+[node name="GlobalMusic" type="Node" unique_id=1661298223]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=52965728]
+stream = ExtResource("1_p76w3")
+volume_db = -15.0
+autoplay = true

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7u4x5qxxaokf"
 path.s3tc="res://.godot/imported/Archer_bowman-head.png-37e01cbc4a1299fc0bab6b299fc2c232.s3tc.ctex"
+path.etc2="res://.godot/imported/Archer_bowman-head.png-37e01cbc4a1299fc0bab6b299fc2c232.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://textures/Classes/Archer/Archer_bowman-head.png"
-dest_files=["res://.godot/imported/Archer_bowman-head.png-37e01cbc4a1299fc0bab6b299fc2c232.s3tc.ctex"]
+dest_files=["res://.godot/imported/Archer_bowman-head.png-37e01cbc4a1299fc0bab6b299fc2c232.s3tc.ctex", "res://.godot/imported/Archer_bowman-head.png-37e01cbc4a1299fc0bab6b299fc2c232.etc2.ctex"]
 
 [params]
 
