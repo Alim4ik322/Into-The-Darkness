@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://0hnt3tvf520c"
+path="res://.godot/imported/Sword Sheath.wav-9027b3942aa70db7333dd3a0ec8c9273.sample"
+
+[deps]
+
+source_file="res://sound/Sword/Sword Sheath.wav"
+dest_files=["res://.godot/imported/Sword Sheath.wav-9027b3942aa70db7333dd3a0ec8c9273.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

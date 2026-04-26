@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cxd4fpcgw2rxu" path="res://scenes/Objects/bonfire.tscn" id="7_hlecj"]
 [ext_resource type="AudioStream" uid="uid://co5f1evmeca5s" path="res://sound/Music/Shadows of Arcadia.mp3" id="8_cgqa1"]
 [ext_resource type="ArrayMesh" uid="uid://dagti4uvwngrm" path="res://addons/kaykit/pillar.obj" id="8_i5pi2"]
+[ext_resource type="AudioStream" uid="uid://hm5s02ffyg67" path="res://sound/Portcullis Gate.wav" id="13_gk8q0"]
 [ext_resource type="PackedScene" uid="uid://cvtidgb5x22b0" path="res://scenes/sword_and_shield.tscn" id="15_3auvh"]
 [ext_resource type="Theme" uid="uid://dqvrtofb43c0l" path="res://UI/MenuTheme_40.tres" id="17_cqtwr"]
 [ext_resource type="PackedScene" uid="uid://sl3jrnvsw46h" path="res://scenes/Characters/Master.tscn" id="17_iomrq"]
@@ -422,6 +423,11 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/OBJECTS/door arc_038/bars_001/bars_001_black_0/StaticBody3D" unique_id=501706496]
 shape = SubResource("ConcavePolygonShape3D_h1bdy")
+
+[node name="GateSound" type="AudioStreamPlayer3D" parent="NavigationRegion3D/OBJECTS/door arc_038" unique_id=401821844]
+transform = Transform3D(0.99999994, -2.842171e-14, -8.4703295e-22, 2.842171e-14, 0.99999994, 0, 0, 0, 0.6896551, 0, 0, 1.7065847)
+stream = ExtResource("13_gk8q0")
+volume_db = -10.0
 
 [node name="lever base" type="Node3D" parent="NavigationRegion3D/OBJECTS" unique_id=22539537]
 transform = Transform3D(1, 4.371139e-08, 2.9802322e-08, -4.371139e-08, 1, 4.3711392e-08, -2.9802322e-08, -4.371139e-08, 1, 3.2899475, 5.113959, 22.530067)

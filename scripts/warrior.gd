@@ -34,6 +34,10 @@ const FOV_LERP: float = 5.0
 @onready var hu_bar = $UI/HungryProgressBar
 @onready var wa_bar = $UI/WaterProgressBar
 
+@onready var sfx_impact: AudioStreamPlayer3D = $SfxImpact
+@onready var sfx_sword: AudioStreamPlayer3D = $Warrior_final/Warrior/Skeleton3D/Sword/SfxSword
+
+
 # --- [ ПЕРЕМЕННЫЕ СОСТОЯНИЯ ] ---
 var is_dead: bool      = false
 var is_attacking: bool = false
@@ -138,6 +142,8 @@ func pickup_weapons() -> void:
 		# Проверяем, что мастер существует, прежде чем дергать его
 		if is_instance_valid(master_node) and master_node.has_method("_enable_battle_mode"):
 			master_node._enable_battle_mode.rpc()
+	sfx_sword.stream = load("res://sound/Sword/Sword Unsheath.wav")
+	sfx_sword.play()
 	
 @rpc("any_peer", "call_local", "reliable")
 func _on_weapon_picked_up():
@@ -176,6 +182,10 @@ func _process(delta: float) -> void:
 		is_reacting = false
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		_play_animation("Death")
+		return
+		
 	if not is_multiplayer_authority() or is_dead: return
 	
 	_apply_gravity(delta)
@@ -241,6 +251,8 @@ func _animation_hit_moment():
 	_request_server_hit.rpc_id(1, damage)
 
 func _execute_attack(anim_name: String, speed: float, stamina_cost: float = 0.0) -> void:
+	sfx_sword.stream = load("res://sound/Sword/Sword Attack.wav")
+	sfx_sword.play()
 	is_attacking = true
 	stamina -= stamina_cost # Трата выносливости
 	anim_player.speed_scale = speed
@@ -278,6 +290,11 @@ func _apply_damage(amount: int) -> void:
 	_trigger_hit_vfx.rpc("block" if is_blocking else "damage")
 	
 	self.health -= final_dmg
+	if is_blocking:
+		sfx_impact.stream = load("res://sound/Sword/Sword Blocked.wav")
+	else:
+		sfx_impact.stream = load("res://sound/Sword/Sword Impact Hit.wav")
+	sfx_impact.play()
 
 @rpc("any_peer", "call_local", "reliable")
 func _trigger_hit_vfx(type: String) -> void:
@@ -289,10 +306,13 @@ func _trigger_hit_vfx(type: String) -> void:
 	_play_animation(anim)
 
 func _die() -> void:
+	_sync_death.rpc()
+
+@rpc("any_peer", "call_local", "reliable")
+func _sync_death():
 	is_dead = true
 	is_attacking = false
 	is_reacting = false
-	set_physics_process(false)
 	_play_animation("Death")
 
 # --- [ АНИМАЦИИ ] ---
@@ -311,10 +331,6 @@ func _play_animation(anim_name: String) -> void:
 		current_anim = anim_name
 
 func _on_animation_finished(anim_name: String) -> void:
-	if anim_name == "Death":
-		anim_player.pause()
-		return
-		
 	if anim_name in ["Sword_Attack_Slash", "Punch", "Kick", "Hit_Reaction", "Impact", "Block_Impact"]:
 		is_attacking = false
 		is_reacting = false

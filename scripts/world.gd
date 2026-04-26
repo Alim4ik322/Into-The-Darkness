@@ -6,6 +6,7 @@ extends Node3D
 @onready var label2 = $CanvasLayer/Control/Label2
 @onready var label3 = $CanvasLayer/Control/Label3
 @onready var label4: Label = $CanvasLayer/Control/Label4
+@onready var gate_sound: AudioStreamPlayer3D = $"NavigationRegion3D/OBJECTS/door arc_038/GateSound"
 
 # --- [ КОНСТАНТЫ ] ---
 const CHARACTER_SCENES = {
@@ -40,6 +41,8 @@ func _ready():
 
 @rpc("call_local", "reliable")
 func _open_gate():
+	gate_sound.pitch_scale = 3
+	gate_sound.play()
 	# 1. Анимация ворот (поднимаем решетку)
 	var gate: Node3D = get_node_or_null("NavigationRegion3D/OBJECTS/door arc_038/bars_001")
 	if gate:

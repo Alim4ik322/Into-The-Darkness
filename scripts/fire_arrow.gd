@@ -6,10 +6,11 @@ var shooter = null
 @export var damage: int = 100
 
 func _ready():
+	$AudioStreamPlayer3D.play()
 	# Убираем ручной set_multiplayer_authority от shooter.
 	# Сервер сам поставит себе права при спавне.
 	
-	get_tree().create_timer(5.0).timeout.connect(queue_free)
+	get_tree().create_timer(5.0).timeout.connect(_safe_destroy_rpc_wrapper)
 	
 	if not body_entered.is_connected(_on_body_entered):
 		body_entered.connect(_on_body_entered)
@@ -43,8 +44,31 @@ func _on_body_entered(body):
 	if target_to_damage.has_method("take_damage"):
 		target_to_damage.take_damage(damage)
 		# Сразу удаляем стрелу после урона
-		queue_free()
+		_safe_destroy.rpc()
 		return
 
 	# Если попали во что-то другое (пол, стены) — просто удаляем стрелу
-	queue_free()
+	_safe_destroy.rpc()
+
+func _safe_destroy_rpc_wrapper():
+	_safe_destroy.rpc()
+
+@rpc("any_peer", "call_local", "reliable")
+func _safe_destroy():
+	# Останавливаем полет и логику на всех клиентах
+	set_physics_process(false)
+	
+	# Скрываем меш/спрайт стрелы на всех клиентах
+	visible = false
+	
+	# Отключаем коллизии везде
+	set_deferred("monitoring", false)
+	set_deferred("monitorable", false)
+	
+	# Каждый дослушивает звук локально
+	if has_node("AudioStreamPlayer3D") and $AudioStreamPlayer3D.is_playing():
+		await $AudioStreamPlayer3D.finished
+	
+	# Только сервер окончательно удаляет узел из сети
+	if multiplayer.is_server():
+		queue_free()

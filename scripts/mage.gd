@@ -124,6 +124,10 @@ func _process(delta: float) -> void:
 # --- [ ФИЗИКА И ПЕРЕДВИЖЕНИЕ ] ---
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		_play_animation("Death")
+		return
+		
 	if not is_multiplayer_authority() or is_dead: return
 	
 	_apply_gravity(delta)
@@ -217,9 +221,12 @@ func _trigger_hit_vfx() -> void:
 		_play_animation("impact")
 
 func _die() -> void:
+	_sync_death.rpc()
+
+@rpc("any_peer", "call_local", "reliable")
+func _sync_death():
 	is_dead = true
 	is_attacking = false
-	set_physics_process(false)
 	_play_animation("Death")
 
 # --- [ СИСТЕМА АНИМАЦИЙ ] ---
@@ -240,9 +247,6 @@ func _play_animation(anim_name: String) -> void:
 		current_anim = anim_name
 
 func _on_animation_finished(anim_name: String) -> void:
-	if anim_name == "Death":
-		anim_player.pause()
-		return
 	if anim_name in ["attack", "impact"]:
 		is_attacking = false
 		anim_player.speed_scale = 1.0
