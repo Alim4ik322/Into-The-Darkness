@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dcdpn3yg64cg8" path="res://UI/sprites/PNG/Double/Border/panel-border-028.png" id="18_dcdl4"]
 [ext_resource type="Texture2D" uid="uid://c6mlu0luebbag" path="res://UI/sprites/wooden-floor-background_53876-88628.jpg" id="19_4o53b"]
 [ext_resource type="Theme" uid="uid://cb4pn3lr6dj6p" path="res://UI/MenuTheme.tres" id="20_dgxxf"]
+[ext_resource type="Theme" uid="uid://wmkd51qkgndp" path="res://UI/Control_teme.tres" id="21_cg7jd"]
 [ext_resource type="Script" uid="uid://30vl5m2kvs4n" path="res://scripts/camera_pivot.gd" id="21_kj1pn"]
 [ext_resource type="Texture2D" uid="uid://bk0ohwpeabkh0" path="res://textures/Classes/Warrior/Warrior_final_Texture-warrior-head_2 (2).png" id="22_fpy1x"]
 [ext_resource type="PackedScene" uid="uid://cffd2kxlsdxix" path="res://textures/Weapon/Sword.glb" id="23_mcux3"]
@@ -4465,6 +4466,75 @@ offset_right = 1041.0
 offset_bottom = 139.0
 theme = ExtResource("20_dgxxf")
 text = "ПАУЗА"
+
+[node name="Control" type="Label" parent="UI" unique_id=1135750159]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_top = -540.0
+offset_right = 810.0
+offset_bottom = -470.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("21_cg7jd")
+theme_override_colors/font_color = Color(0.9450993, 0.7728449, 0.17852241, 1)
+text = "Управление"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control_input" type="Label" parent="UI/Control" unique_id=510301297]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.5
+offset_top = 46.0
+offset_right = 299.5
+offset_bottom = 319.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("21_cg7jd")
+theme_override_colors/font_color = Color(0.9450993, 0.7728449, 0.17852241, 1)
+text = "Ходьба - wasd
+Удар ногой - F
+Подбор предметов - E
+Боевая стойка - R
+Удар рукой / мечом - LMB
+Блокирование Щитом - RMB"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Control/Control_input" unique_id=1062779988]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_dcdl4")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Control" unique_id=1495156412]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_dcdl4")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=55442331]
 script = ExtResource("21_kj1pn")

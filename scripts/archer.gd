@@ -15,10 +15,22 @@ const ANIM_WALK: String = "Walk"
 @onready var model = $Archer_model
 
 # Бары и показатели
-var health: int = 100
-var stamina: float = 100.0
-var hunger: float = 100.0
-var stirst: float = 100.0
+var health: int = 100:
+	set(v):
+		health = clamp(v, 0, 100)
+		if hp_bar: hp_bar.value = health
+var stamina: float = 100.0:
+	set(v):
+		stamina = clamp(v, 0.0, 100.0)
+		if st_bar: st_bar.value = stamina
+var hunger: float = 100.0:
+	set(v):
+		hunger = clamp(v, 0.0, 100.0)
+		if hu_bar: hu_bar.value = hunger
+var stirst: float = 100.0:
+	set(v):
+		stirst = clamp(v, 0.0, 100.0)
+		if wa_bar: wa_bar.value = stirst
 var current_animation: String = ""
 
 @onready var hp_bar = find_child("HPProgressBar", true) as Range
@@ -47,11 +59,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _process(_delta):
-	if is_multiplayer_authority():
-		if hp_bar: hp_bar.value = health
-		if st_bar: st_bar.value = stamina
-		if hu_bar: hu_bar.value = hunger
-		if wa_bar: wa_bar.value = stirst
+	pass
 
 func _play_animation(anim_name: String) -> void:
 	if anim_player and current_animation != anim_name:

@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://c6mlu0luebbag" path="res://UI/sprites/wooden-floor-background_53876-88628.jpg" id="19_uow84"]
 [ext_resource type="Theme" uid="uid://cb4pn3lr6dj6p" path="res://UI/MenuTheme.tres" id="20_djwo0"]
 [ext_resource type="Script" uid="uid://30vl5m2kvs4n" path="res://scripts/camera_pivot.gd" id="21_oeval"]
+[ext_resource type="Theme" uid="uid://wmkd51qkgndp" path="res://UI/Control_teme.tres" id="22_lmm24"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vsogx"]
 resource_name = "Material.001"
@@ -185,25 +186,25 @@ height = 5.7131853
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_p2lrt"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
-properties/0/replication_mode = 1
+properties/0/replication_mode = 2
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
-properties/1/replication_mode = 1
+properties/1/replication_mode = 2
 properties/2/path = NodePath("mg-anim:position")
 properties/2/spawn = true
-properties/2/replication_mode = 1
+properties/2/replication_mode = 2
 properties/3/path = NodePath("mg-anim:rotation")
 properties/3/spawn = true
-properties/3/replication_mode = 1
+properties/3/replication_mode = 2
 properties/4/path = NodePath("AnimationPlayer:speed_scale")
 properties/4/spawn = true
-properties/4/replication_mode = 1
+properties/4/replication_mode = 2
 properties/5/path = NodePath("AnimationPlayer:current_animation")
 properties/5/spawn = true
-properties/5/replication_mode = 1
+properties/5/replication_mode = 2
 properties/6/path = NodePath(".:is_dead")
 properties/6/spawn = true
-properties/6/replication_mode = 1
+properties/6/replication_mode = 2
 
 [sub_resource type="Animation" id="Animation_c2dba"]
 resource_name = "Death"
@@ -4833,6 +4834,72 @@ offset_right = 1041.0
 offset_bottom = 139.0
 theme = ExtResource("20_djwo0")
 text = "ПАУЗА"
+
+[node name="Control" type="Label" parent="UI" unique_id=1076874820]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_top = -540.0
+offset_right = 810.0
+offset_bottom = -470.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("22_lmm24")
+theme_override_colors/font_color = Color(0.9450993, 0.7728449, 0.17852241, 1)
+text = "Управление"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control_input" type="Label" parent="UI/Control" unique_id=1832699059]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.5
+offset_top = 46.0
+offset_right = 299.5
+offset_bottom = 296.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("22_lmm24")
+theme_override_colors/font_color = Color(0.9450993, 0.7728449, 0.17852241, 1)
+text = "Ходьба - wasd
+Боевая стойка - R
+Навык огненная стрела - LMB"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Control/Control_input" unique_id=1144104754]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_uey0l")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Control" unique_id=237224496]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_uey0l")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=1908183691]
 script = ExtResource("21_oeval")

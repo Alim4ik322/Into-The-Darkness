@@ -3,7 +3,7 @@ extends Area3D
 const SPEED = 25.0
 var shooter = null 
 
-@export var damage: int = 100
+@export var damage: int = 20
 
 func _ready():
 	$AudioStreamPlayer3D.play()

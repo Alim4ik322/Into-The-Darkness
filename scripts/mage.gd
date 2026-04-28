@@ -20,6 +20,7 @@ const FOV_RUN: float  = 85.0
 const FOV_LERP: float = 5.0
 
 # --- [ УЗЛЫ ] ---
+@onready var control_hint = $UI/Control  # Ссылка на твой узел управления
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var model: Node3D = $"mg-anim"
 @onready var camera: Camera3D = find_child("Camera3D", true) as Camera3D
@@ -46,10 +47,25 @@ var health: int = 100:
 		if health <= 0 and not is_dead: 
 			_die()
 
-var mana: float    = 100.0
-var stamina: float = 100.0
-var hunger: float  = 100.0
-var stirst: float  = 100.0
+var mana: float    = 100.0:
+	set(v):
+		mana = clamp(v, 0.0, 100.0)
+		if mp_bar: mp_bar.value = mana
+
+var stamina: float = 100.0:
+	set(v):
+		stamina = clamp(v, 0.0, 100.0)
+		if st_bar: st_bar.value = stamina
+
+var hunger: float  = 100.0:
+	set(v):
+		hunger = clamp(v, 0.0, 100.0)
+		if hu_bar: hu_bar.value = hunger
+
+var stirst: float  = 100.0:
+	set(v):
+		stirst = clamp(v, 0.0, 100.0)
+		if wa_bar: wa_bar.value = stirst
 
 var is_combat_mode: bool = false
 
@@ -73,10 +89,12 @@ func _ready() -> void:
 	# Код ниже только для владельца
 	if has_node("UI/HP"):
 		$UI/HP.play("default")
-		
+	
+	
 	if camera: camera.make_current()
 	if ui: 
 		ui.show()
+		_show_control_hint()
 		ui.layer = 11 # У Мага слой чуть выше или такой же, как у Воина
 		if hp_bar: hp_bar.value = health
 		
@@ -109,14 +127,7 @@ func _process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
 
 	# Регенерация маны
-	mana = min(mana + delta * 3.0, 100.0)
-	
-	# Обновление баров
-	if hp_bar: hp_bar.value = health
-	if mp_bar: mp_bar.value = mana
-	if st_bar: st_bar.value = stamina
-	if hu_bar: hu_bar.value = hunger
-	if wa_bar: wa_bar.value = stirst
+	mana += delta * 3.0
 	
 	if is_attacking and not anim_player.is_playing():
 		is_attacking = false
@@ -257,3 +268,35 @@ func _on_animation_finished(anim_name: String) -> void:
 func force_teleport(new_pos: Vector3):
 	global_position = new_pos
 	velocity = Vector3.ZERO
+
+func _show_control_hint() -> void:
+	if not control_hint: return
+	
+	# 1. Скрываем сразу и готовим позицию
+	control_hint.hide() # Чтобы не маячил во время паузы
+	control_hint.modulate.a = 0.0
+	var final_y = control_hint.position.y
+	control_hint.position.y += 20 
+	
+	var tween = create_tween()
+	
+	# Ждем 2 секунды в "темноте"
+	tween.tween_interval(2.0)
+	
+	# ВКЛЮЧАЕМ видимость ровно в момент начала анимации
+	tween.tween_callback(control_hint.show)
+	
+	# 2. Появление и движение вверх
+	tween.set_parallel(true)
+	tween.tween_property(control_hint, "modulate:a", 1.0, 1.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(control_hint, "position:y", final_y, 1.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	
+	# 3. Ожидание 5 секунд
+	tween.set_parallel(false)
+	tween.tween_interval(5.0)
+	
+	# 4. Исчезновение
+	tween.tween_property(control_hint, "modulate:a", 0.0, 1.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	
+	# 5. Скрываем совсем
+	tween.tween_callback(control_hint.hide)

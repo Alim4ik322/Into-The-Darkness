@@ -12,6 +12,13 @@ const ROTATION_SPEED = 10.0
 
 var home_pos: Vector3 = Vector3(0.299, 3.116, 30.861)
 var lever_pos: Vector3 = Vector3(2.5, 3.116, 23.5)
+
+# --- [ ПРЕДЗАГРУЗКА РЕСУРСОВ ] ---
+const SND_UNSHEATH = preload("res://sound/Sword/Sword Unsheath.wav")
+const SND_SHEATH = preload("res://sound/Sword/Sword Sheath.wav")
+const SND_BLOCKED = preload("res://sound/Sword/Sword Blocked.wav")
+const SND_IMPACT = preload("res://sound/Sword/Sword Impact Hit.wav")
+const SND_ATTACK = preload("res://sound/Sword/Sword Attack.wav")
 var current_move_target: Vector3
 var is_returning_home: bool = false
 var is_battle_started: bool = false
@@ -218,8 +225,7 @@ func _set_sword_visibility(is_visible: bool):
 	if not sword_node: sword_node = find_child("Sword", true, false)
 	if sword_node: 
 		sword_node.visible = is_visible
-		var sound_path = "res://sound/Sword/Sword Unsheath.wav" if is_visible else "res://sound/Sword/Sword Sheath.wav"
-		sfx_sword.stream = load(sound_path)
+		sfx_sword.stream = SND_UNSHEATH if is_visible else SND_SHEATH
 		sfx_sword.play()
 
 @rpc("any_peer", "call_local")
@@ -230,7 +236,7 @@ func take_damage(amount: int):
 	if multiplayer.multiplayer_peer == null or not multiplayer.is_server(): return
 	if current_state == State.BLOCK:
 		is_first_attack_after_block = true
-		sfx_impact.stream = load("res://sound/Sword/Sword Blocked.wav")
+		sfx_impact.stream = SND_BLOCKED
 		sfx_impact.play()
 		_start_actual_combat.rpc()
 		return
@@ -240,7 +246,7 @@ func take_damage(amount: int):
 	else:
 		current_state = State.STUNNED
 		_play_anim.rpc("impact")
-		sfx_impact.stream = load("res://sound/Sword/Sword Impact Hit.wav")
+		sfx_impact.stream = SND_IMPACT
 		sfx_impact.play()
 
 func _die():
@@ -267,7 +273,7 @@ func _kill_boss_instantly():
 
 func _start_attack():
 	if current_state == State.ATTACK: return
-	sfx_sword.stream = load("res://sound/Sword/Sword Attack.wav")
+	sfx_sword.stream = SND_ATTACK
 	sfx_sword.play()
 	if is_instance_valid(target):
 		var look_dir = target.global_position - global_position

@@ -19,6 +19,7 @@ const FOV_RUN: float  = 85.0
 const FOV_LERP: float = 5.0
 
 # --- [ УЗЛЫ ] ---
+@onready var control_hint = $UI/Control  # Ссылка на твой узел управления
 @onready var anim_player: AnimationPlayer = $Warrior_final/AnimationPlayer
 @onready var model: Node3D = $Warrior_final
 @onready var camera: Camera3D = find_child("Camera3D", true) as Camera3D
@@ -36,6 +37,12 @@ const FOV_LERP: float = 5.0
 
 @onready var sfx_impact: AudioStreamPlayer3D = $SfxImpact
 @onready var sfx_sword: AudioStreamPlayer3D = $Warrior_final/Warrior/Skeleton3D/Sword/SfxSword
+
+# --- [ ПРЕДЗАГРУЗКА РЕСУРСОВ ] ---
+const SND_ATTACK = preload("res://sound/Sword/Sword Attack.wav")
+const SND_BLOCKED = preload("res://sound/Sword/Sword Blocked.wav")
+const SND_IMPACT = preload("res://sound/Sword/Sword Impact Hit.wav")
+const SND_UNSHEATH = preload("res://sound/Sword/Sword Unsheath.wav")
 
 
 # --- [ ПЕРЕМЕННЫЕ СОСТОЯНИЯ ] ---
@@ -60,9 +67,20 @@ var stamina: float = 100.0:
 		if st_bar:
 			st_bar.value = stamina
 
-var mana: float    = 50.0
-var hunger: float  = 100.0
-var stirst: float  = 100.0
+var mana: float    = 50.0:
+	set(v):
+		mana = clamp(v, 0.0, 100.0)
+		if mp_bar: mp_bar.value = mana
+
+var hunger: float  = 100.0:
+	set(v):
+		hunger = clamp(v, 0.0, 100.0)
+		if hu_bar: hu_bar.value = hunger
+
+var stirst: float  = 100.0:
+	set(v):
+		stirst = clamp(v, 0.0, 100.0)
+		if wa_bar: wa_bar.value = stirst
 
 var is_combat_mode: bool = false: 
 	set(v):
@@ -94,6 +112,7 @@ func _ready() -> void:
 	if camera: camera.make_current()
 	if ui: 
 		ui.show()
+		_show_control_hint()
 		ui.layer = 10 # Твой UI всегда сверху
 		if hp_bar: hp_bar.value = health
 		
@@ -142,7 +161,7 @@ func pickup_weapons() -> void:
 		# Проверяем, что мастер существует, прежде чем дергать его
 		if is_instance_valid(master_node) and master_node.has_method("_enable_battle_mode"):
 			master_node._enable_battle_mode.rpc()
-	sfx_sword.stream = load("res://sound/Sword/Sword Unsheath.wav")
+	sfx_sword.stream = SND_UNSHEATH
 	sfx_sword.play()
 	
 @rpc("any_peer", "call_local", "reliable")
@@ -167,15 +186,7 @@ func _process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
 	if not is_attacking:
 		stamina += delta * 5.0
-	mana = min(mana + delta * 3.0, 100.0)
-	if mp_bar: mp_bar.value = mana
-	if st_bar: st_bar.value = stamina
-	if hu_bar: hu_bar.value = hunger
-	if wa_bar: wa_bar.value = stirst
-	
-	# Подстраховка для UI
-	if hp_bar and hp_bar.value != health:
-		hp_bar.value = health
+	mana += delta * 3.0
 	
 	if (is_attacking or is_reacting) and not anim_player.is_playing():
 		is_attacking = false
@@ -251,7 +262,7 @@ func _animation_hit_moment():
 	_request_server_hit.rpc_id(1, damage)
 
 func _execute_attack(anim_name: String, speed: float, stamina_cost: float = 0.0) -> void:
-	sfx_sword.stream = load("res://sound/Sword/Sword Attack.wav")
+	sfx_sword.stream = SND_ATTACK
 	sfx_sword.play()
 	is_attacking = true
 	stamina -= stamina_cost # Трата выносливости
@@ -291,9 +302,9 @@ func _apply_damage(amount: int) -> void:
 	
 	self.health -= final_dmg
 	if is_blocking:
-		sfx_impact.stream = load("res://sound/Sword/Sword Blocked.wav")
+		sfx_impact.stream = SND_BLOCKED
 	else:
-		sfx_impact.stream = load("res://sound/Sword/Sword Impact Hit.wav")
+		sfx_impact.stream = SND_IMPACT
 	sfx_impact.play()
 
 @rpc("any_peer", "call_local", "reliable")
@@ -340,3 +351,35 @@ func _on_animation_finished(anim_name: String) -> void:
 func force_teleport(new_pos: Vector3):
 	global_position = new_pos
 	velocity = Vector3.ZERO
+
+func _show_control_hint() -> void:
+	if not control_hint: return
+	
+	# 1. Скрываем и опускаем вниз
+	control_hint.hide() 
+	control_hint.modulate.a = 0.0
+	var final_y = control_hint.position.y
+	control_hint.position.y += 20 
+	
+	var tween = create_tween()
+	
+	# Ждем 2 секунды тишины
+	tween.tween_interval(2.0)
+	
+	# Включаем видимость ПЕРЕД началом движения
+	tween.tween_callback(control_hint.show)
+	
+	# 2. Появление и подъем
+	tween.set_parallel(true)
+	tween.tween_property(control_hint, "modulate:a", 1.0, 1.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(control_hint, "position:y", final_y, 1.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	
+	# 3. Пауза 5 секунд
+	tween.set_parallel(false)
+	tween.tween_interval(5.0)
+	
+	# 4. Исчезновение
+	tween.tween_property(control_hint, "modulate:a", 0.0, 1.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	
+	# 5. Скрываем узел совсем
+	tween.tween_callback(control_hint.hide)
